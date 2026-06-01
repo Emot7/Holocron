@@ -1,8 +1,10 @@
+import { FiSearch } from 'react-icons/fi'
+
 function Navbar() {
   return (
-    <nav className="w-full bg-[#000000] border-b border-[#000000] px-8 py-4 flex items-center justify-between">
+    <nav className="w-full bg-[#000000] border-b border-[#434243] px-8 py-4 flex items-center justify-between">
 
-      {/* LEFT GROUP — logo and links together */}
+      {/* Left Group — logo and links together */}
       <div className="flex items-center gap-8">
 
         {/* Logo */}
@@ -23,8 +25,19 @@ function Navbar() {
 
       </div>
 
-      {/* RIGHT GROUP — sign up and log in */}
+    
+
+      {/* Right Group — sign up and log in */}
       <div className="flex items-center gap-6">
+          {/* Center — search bar */}
+      <div className="relative flex items-center">
+        <input
+          type="text"
+          placeholder="Search Games..."
+          className="bg-[#282828] text-[#E8E4D4] placeholder-[#919094] text-sm px-4 py-2 pr-10 rounded-md border border-[#2d2c2e] focus:outline-none focus:border-[#7EC8C8] w-64"
+        />
+        <FiSearch className="absolute right-3 text-[#919094]" />
+      </div>
         <button className="text-[#8C8A96] hover:text-[#E8E4D4] text-sm transition-colors">
           Sign Up
         </button>
