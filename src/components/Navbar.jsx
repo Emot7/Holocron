@@ -32,12 +32,13 @@ function Navbar() {
       <div className="flex items-center gap-6">
         {/* Center: search bar */}
         <div className="relative flex items-center">
+            <div className="absolute inset-0 rounded-full border border-white/20 bg-white/10 backdrop-blur-sm" />
           <input
             type="text"
             placeholder="Search Games..."
-            className="bg-[#282828] text-[#E8E4D4] placeholder-[#919094] text-sm px-4 py-2 pr-10 rounded-md border border-[#2d2c2e] focus:outline-none focus:border-[#7EC8C8] w-64"
+            className="relative z-10 bg-transparent text-[#E8E4D4] placeholder-[#919094] text-sm px-5 py-2 pr-10 w-[280px] focus:outline-none"
           />
-          <FiSearch className="absolute right-3 text-[#919094]" />
+          <FiSearch className="absolute right-4 text-[#919094]" />
         </div>
         <button className="text-[#8C8A96] hover:text-[#E8E4D4] text-sm transition-colors">
           Sign Up
