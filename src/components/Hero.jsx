@@ -3,7 +3,7 @@ import Vector from '../assets/Vector.svg'
 
 function Hero() {
   return (
-    <section className="bg-[#000000] px-12 py-1 flex items-center justify-between">
+    <section className="bg-[#000000] px-12 flex items-center justify-between h-[550px]">
 
       {/* Left side */}
       <div className="max-w-lg mt-[-80px]">
@@ -36,7 +36,7 @@ function Hero() {
       </div>
 
       {/* Right side: orb */}
-      <div className="flex-1 flex justify-center items-center mt-[-20px]">
+      <div className="flex-1 flex justify-center items-center mt-[-20px] overflow-hidden">
         <img src={gradientOrb} alt="Holocron orb" className="w-[750px] opacity-90" />
       </div>
 
