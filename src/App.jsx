@@ -1,6 +1,7 @@
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import PopularGames from './components/PopularGames'
+import FeatureCards from './components/FeatureCards'
 
 function App() {
   return (
@@ -8,6 +9,7 @@ function App() {
       <Navbar />
       <Hero />
       <PopularGames />
+      <FeatureCards/>
     </div>
   )
 }

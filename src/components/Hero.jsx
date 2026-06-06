@@ -14,7 +14,7 @@ function Hero() {
           </span>
         </h1>
 
-        <p className="font-['Golos_Text'] text-[#8C8A96] text-base mb-8">
+        <p className="font-['Golos_Text'] text-[#A3A3A3] text-base mb-8">
           Track your backlog, discover what's popular, and share what you think — all in one place.
         </p>
 
