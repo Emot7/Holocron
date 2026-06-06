@@ -42,7 +42,7 @@ function PopularGames() {
             <img
               src={game.background_image}
               alt={game.name}
-              className="w-full h-[260px] object-cover object-top rounded-md"
+              className="w-full h-[260px] object-cover object-center rounded-md"
             />
             <p className="text-[#E8E4D4] text-sm mt-2">{game.name}</p>
             <p className="text-[#8C8A96] text-sm mt-2">{game.rating}</p>
