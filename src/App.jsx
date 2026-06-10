@@ -1,17 +1,20 @@
+import { Routes, Route } from 'react-router-dom'
 import Navbar from './components/Navbar'
-import Hero from './components/Hero'
-import PopularGames from './components/PopularGames'
-import FeatureCards from './components/FeatureCards'
-import Footer from './components/Footer'
+import Home from './pages/Home'
+import Explore from './pages/Explore'
+import Library from './pages/Library'
+import SignUp from './pages/SignUp'
 
 function App() {
   return (
     <div className="bg-[#000000] min-h-screen">
       <Navbar />
-      <Hero />
-      <PopularGames />
-      <FeatureCards/>
-      <Footer/>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/explore" element={<Explore />} />
+        <Route path="/library" element={<Library />} />
+        <Route path="/SignUp" element={<SignUp />} />
+      </Routes>
     </div>
   )
 }

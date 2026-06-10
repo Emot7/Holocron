@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import { FiSearch } from "react-icons/fi";
 
 function Navbar() {
@@ -14,18 +15,13 @@ function Navbar() {
         </div>
 
         {/* Nav links */}
-        <a
-          href="#"
-          className="text-[#8C8A96] hover:text-[#E8E4D4] text-sm transition-colors"
-        >
+          
+        <Link to="/explore" className="text-[#8C8A96] hover:text-[#E8E4D4] text-sm transition-colors">
           Explore
-        </a>
-        <a
-          href="#"
-          className="text-[#8C8A96] hover:text-[#E8E4D4] text-sm transition-colors"
-        >
+        </Link>
+        <Link to="/library" className="text-[#8C8A96] hover:text-[#E8E4D4] text-sm transition-colors">
           Library
-        </a>
+        </Link>
       </div>
 
       {/* Right Group: sign up and log in */}
@@ -40,9 +36,9 @@ function Navbar() {
           />
           <FiSearch className="absolute right-4 text-[#919094]" />
         </div>
-        <button className="text-[#8C8A96] hover:text-[#E8E4D4] text-sm transition-colors">
+        <Link to="/signup" className="text-[#8C8A96] hover:text-[#E8E4D4] text-sm transition-colors">
           Sign Up
-        </button>
+        </Link>
         <button className="text-[#8C8A96] hover:text-[#E8E4D4] text-sm transition-colors">
           Log In
         </button>
