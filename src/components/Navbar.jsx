@@ -9,17 +9,17 @@ function Navbar() {
         {/* Logo */}
         <div className="flex items-center gap-2">
           <div className="w-2 h-2 rounded-full bg-[#2E4F8B]"></div>
-          <span className="text-[#E8E4D4] font-medium tracking-widest text-sm uppercase font-['Orbitron']">
+          <span className="text-[#ffffff] font-medium tracking-widest text-sm uppercase font-['Orbitron']">
             Holocron
           </span>
         </div>
 
         {/* Nav links */}
           
-        <Link to="/explore" className="text-[#8C8A96] hover:text-[#E8E4D4] text-sm transition-colors">
+        <Link to ="/explore" className="text-[#ffffff] hover:text-[#E8E4D4] text-sm transition-colors">
           Explore
         </Link>
-        <Link to="/library" className="text-[#8C8A96] hover:text-[#E8E4D4] text-sm transition-colors">
+        <Link to="/library" className="text-[#ffffff] hover:text-[#E8E4D4] text-sm transition-colors">
           Library
         </Link>
       </div>
@@ -28,18 +28,18 @@ function Navbar() {
       <div className="flex items-center gap-6">
         {/* Center: search bar */}
         <div className="relative flex items-center">
-            <div className="absolute inset-0 rounded-full border border-white/20 bg-white/10 backdrop-blur-sm" />
+            <div className="absolute inset-0 rounded-full border border-white/50 bg-white/10 backdrop-blur-sm" />
           <input
             type="text"
             placeholder="Search Games..."
-            className="relative z-10 bg-transparent text-[#E8E4D4] placeholder-[#919094] text-sm px-5 py-2 pr-10 w-[280px] focus:outline-none"
+            className="relative z-10 bg-transparent text-[#ffffff] placeholder-[#ffffff] text-sm px-5 py-2 pr-10 w-[280px] focus:outline-none"
           />
-          <FiSearch className="absolute right-4 text-[#919094]" />
+          <FiSearch className="absolute right-4 text-[#ffffff]" />
         </div>
-        <Link to="/signup" className="text-[#8C8A96] hover:text-[#E8E4D4] text-sm transition-colors">
+        <Link to="/signup" className="text-[#ffffff] hover:text-[#E8E4D4] text-sm transition-colors">
           Sign Up
         </Link>
-        <button className="text-[#8C8A96] hover:text-[#E8E4D4] text-sm transition-colors">
+        <button className="text-[#ffffff] hover:text-[#E8E4D4] text-sm transition-colors">
           Log In
         </button>
       </div>
