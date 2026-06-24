@@ -21,7 +21,7 @@ function Explore() {
 
       {/* Filter Bar */}
       <div className="flex items-center gap-6 mb-10">
-        <span className="font-['Orbitron'] text-[#E8E4D4] text-sm tracking-widest uppercase">
+        <span className="font-['Orbitron'] text-[#ffffff] text-sm tracking-widest uppercase">
           Browse By
         </span>
         <div className="flex items-center gap-3">
@@ -31,7 +31,7 @@ function Explore() {
               style={{
                 background: "linear-gradient(to right, #FFFFFF 0%, #777777 35%, #797979 61%, #FFFFFF 100%)",
               }}
-              className="font-['Gugi'] text-xs text-[#0D0B14] px-4 py-2 flex items-center gap-2"
+              className="font-['Gugi'] text-xs text-[#ffffff] px-4 py-2 flex items-center gap-2"
             >
               {filter} ▾
             </button>
