@@ -8,7 +8,7 @@ function Explore() {
     const fetchGames = async () => {
       const apiKey = import.meta.env.VITE_RAWG_API_KEY
       const res = await fetch(
-        `https://api.rawg.io/api/games?key=${apiKey}&ordering=-rating&page_size=21&min_ratings=10`
+        `https://api.rawg.io/api/games?key=${apiKey}&ordering=-added&page_size=21&dates=2020-01-01,2026-12-31&min_ratings=50`
       )
       const data = await res.json()
       setGames(data.results)

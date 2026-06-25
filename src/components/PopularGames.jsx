@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import GameCard from "./GameCard";
 
 function PopularGames() {
   const [games, setGames] = useState([]);
@@ -36,16 +37,10 @@ function PopularGames() {
       <h2 className="text-[#E8E4D4] font-['Orbitron'] text-lg font-medium tracking-widest uppercase mb-8">
         Popular Games
       </h2>
-      <div className="flex gap-6">
+      <div className="flex gap-6 items-start">
         {games.map((game) => (
-          <div key={game.id} className="flex-1">
-            <img
-              src={game.background_image}
-              alt={game.name}
-              className="w-full h-[260px] object-cover object-center rounded-md"
-            />
-            <p className="text-[#E8E4D4] text-sm mt-2">{game.name}</p>
-            <p className="text-[#8C8A96] text-sm mt-2">{game.rating}</p>
+          <div key={game.id} className="flex-1 min-w-0">
+          <GameCard key={game.id} game={game} imageHeight="h-[260px]" />
           </div>
         ))}
       </div>

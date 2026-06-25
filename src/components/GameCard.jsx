@@ -1,7 +1,7 @@
-function GameCard ({ game }) {
+function GameCard ({ game, imageHeight = 'aspect-[3/4]' }) {
     return (
         <div className="flex flex-col gap-2">
-            <div className="w-full aspect-[3/4] rounded-lg overflow-hidden bg-[#1C1828]">
+            <div className={`w-full ${imageHeight} rounded-lg overflow-hidden bg-[#1C1828]`}>
                 <img
                 src={game.background_image}
                 alt={game.name}
