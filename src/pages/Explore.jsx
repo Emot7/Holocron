@@ -3,18 +3,32 @@ import GameCard from '../components/GameCard'
 
 function Explore() {
   const [games, setGames] = useState([])
+  const [selectedGenre, setSelectedGenre] = useState('')
+  const [openDropdown, setOpenDropdown] = useState(null)
+
+  const genres = [
+  { label: 'Action', value: 'action' },
+  { label: 'RPG', value: 'role-playing-games-rpg' },
+  { label: 'Horror', value: 'horror' },
+  { label: 'Adventure', value: 'adventure' },
+  { label: 'Indie', value: 'indie' },
+  { label: 'Shooter', value: 'shooter' },
+  { label: 'Survival', value: 'survival' },
+  ]
 
   useEffect(() => {
     const fetchGames = async () => {
       const apiKey = import.meta.env.VITE_RAWG_API_KEY
+      const dateParam = selectedGenre ? '' : '&dates=2020-01-01,2026-12-31'
+      const genreParam = selectedGenre ? `&genres=${selectedGenre}` : ''
       const res = await fetch(
-        `https://api.rawg.io/api/games?key=${apiKey}&ordering=-added&page_size=21&dates=2020-01-01,2026-12-31&min_ratings=50`
+        `https://api.rawg.io/api/games?key=${apiKey}&ordering=-added&page_size=21&min_ratings=50${dateParam}${genreParam}`
       )
       const data = await res.json()
       setGames(data.results)
     }
     fetchGames()
-  }, [])
+  }, [selectedGenre])
 
   return (
     <div className="bg-[#000000] min-h-screen px-12 py-10">
@@ -25,7 +39,41 @@ function Explore() {
           Browse By
         </span>
         <div className="flex items-center gap-3">
-          {['GENRE', 'YEAR', 'RATING', 'POPULAR'].map((filter) => (
+
+                <div className="relative">
+            <button
+              onClick={() => setOpenDropdown(openDropdown === 'genre' ? null : 'genre')}
+              style={{
+                background: "linear-gradient(to right, #FFFFFF 0%, #777777 35%, #797979 61%, #FFFFFF 100%)",
+              }}
+              className="font-['Gugi'] text-xs text-[#ffffff] px-4 py-2 flex items-center gap-2"
+            >
+              {selectedGenre 
+                ? genres.find(g => g.value === selectedGenre)?.label.toUpperCase() 
+                  : 'GENRE'} ▾
+            </button>
+            {openDropdown === 'genre' && (
+              <div className="absolute top-full left-0 mt-1 bg-[#1C1828] border border-[#434243] rounded-md z-50 min-w-[140px]">
+                <button
+                  onClick={() => { setSelectedGenre(''); setOpenDropdown(null) }}
+                  className="block w-full text-left px-4 py-2 text-xs font-['Gugi'] text-[#8C8A96] hover:text-[#E8E4D4] hover:bg-[#2A2538]"
+                >
+                  ALL
+                </button>
+                {genres.map((genre) => (
+                  <button
+                    key={genre.value}
+                    onClick={() => { setSelectedGenre(genre.value); setOpenDropdown(null) }}
+                    className="block w-full text-left px-4 py-2 text-xs font-['Gugi'] text-[#8C8A96] hover:text-[#E8E4D4] hover:bg-[#ffffff]"
+                  >
+                    {genre.label}
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
+
+          {['YEAR', 'RATING', 'POPULAR'].map((filter) => (
             <button
               key={filter}
               style={{
@@ -36,6 +84,7 @@ function Explore() {
               {filter} ▾
             </button>
           ))}
+
         </div>
       </div>
 
