@@ -5,6 +5,7 @@ function Explore() {
   const [games, setGames] = useState([]);
   const [selectedGenre, setSelectedGenre] = useState("");
   const [selectedYear, setSelectedYear] = useState("");
+  const [selectedRating, setSelectedRating] = useState("");
   const [openDropdown, setOpenDropdown] = useState(null);
 
   const genres = [
@@ -27,6 +28,12 @@ function Explore() {
     { label: "2020", value: "2020-01-01,2020-12-31" },
   ];
 
+  const rating = [
+    { label: "4+ Stars", value: "80,100" },
+    { label: "3+ Stars", value: "60,100" },
+    { label: "2+ Stars", value: "40,100" },
+  ];
+
   useEffect(() => {
     const fetchGames = async () => {
       const apiKey = import.meta.env.VITE_RAWG_API_KEY;
@@ -36,14 +43,15 @@ function Explore() {
           ? ""
           : "&dates=2020-01-01,2026-12-31";
       const genreParam = selectedGenre ? `&genres=${selectedGenre}` : "";
+      const ratingParam = selectedRating ? `&metacritic=${selectedRating}` : "";
       const res = await fetch(
-        `https://api.rawg.io/api/games?key=${apiKey}&ordering=-added&page_size=21&min_ratings=50${dateParam}${genreParam}`,
+        `https://api.rawg.io/api/games?key=${apiKey}&ordering=-added&page_size=21&min_ratings=50${dateParam}${genreParam}${ratingParam}`,
       );
       const data = await res.json();
       setGames(data.results);
     };
     fetchGames();
-  }, [selectedGenre, selectedYear]);
+  }, [selectedGenre, selectedYear, selectedRating]);
 
   return (
     <div className="bg-[#000000] min-h-screen px-12 py-10">
@@ -141,7 +149,50 @@ function Explore() {
             )}
           </div>
 
-          {["RATING", "POPULAR"].map((filter) => (
+          <div className="relative">
+            <button
+              onClick={() =>
+                setOpenDropdown(openDropdown === "rating" ? null : "rating")
+              }
+              style={{
+                background:
+                  "linear-gradient(to right, #FFFFFF 0%, #777777 35%, #797979 61%, #FFFFFF 100%)",
+              }}
+              className="font-['Gugi'] text-xs text-[#ffffff] px-4 py-2 flex items-center gap-2"
+            >
+              {selectedRating
+                ? rating.find((y) => y.value === selectedRating)?.label
+                : "RATING"}{" "}
+              ▾
+            </button>
+            {openDropdown === "rating" && (
+              <div className="absolute top-full left-0 mt-1 bg-[#1C1828] border border-[#434243] rounded-md z-50 min-w-[140px]">
+                <button
+                  onClick={() => {
+                    setSelectedRating("");
+                    setOpenDropdown(null);
+                  }}
+                  className="block w-full text-left px-4 py-2 text-xs font-['Gugi'] text-[#8C8A96] hover:text-[#E8E4D4] hover:bg-[#2A2538]"
+                >
+                  ALL
+                </button>
+                {rating.map((r) => (
+                  <button
+                    key={r.value}
+                    onClick={() => {
+                      setSelectedRating(r.value);
+                      setOpenDropdown(null);
+                    }}
+                    className="block w-full text-left px-4 py-2 text-xs font-['Gugi'] text-[#8C8A96] hover:text-[#E8E4D4] hover:bg-[#2A2538]"
+                  >
+                    {r.label}
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
+
+          {["POPULAR"].map((filter) => (
             <button
               key={filter}
               style={{
