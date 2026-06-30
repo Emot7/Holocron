@@ -6,6 +6,7 @@ function Explore() {
   const [selectedGenre, setSelectedGenre] = useState("");
   const [selectedYear, setSelectedYear] = useState("");
   const [selectedRating, setSelectedRating] = useState("");
+  const [selectedOrdering, setSelectedOrdering] = useState("-added");
   const [openDropdown, setOpenDropdown] = useState(null);
 
   const genres = [
@@ -34,6 +35,12 @@ function Explore() {
     { label: "2+ Stars", value: "40,100" },
   ];
 
+  const popular = [
+    { label: "Most Added", value: "-added" },
+    { label: "Most Rated", value: "-rating" },
+    { label: "Newest", value: "-released" },
+  ];
+
   useEffect(() => {
     const fetchGames = async () => {
       const apiKey = import.meta.env.VITE_RAWG_API_KEY;
@@ -45,13 +52,13 @@ function Explore() {
       const genreParam = selectedGenre ? `&genres=${selectedGenre}` : "";
       const ratingParam = selectedRating ? `&metacritic=${selectedRating}` : "";
       const res = await fetch(
-        `https://api.rawg.io/api/games?key=${apiKey}&ordering=-added&page_size=21&min_ratings=50${dateParam}${genreParam}${ratingParam}`,
+        `https://api.rawg.io/api/games?key=${apiKey}&ordering=${selectedOrdering}&page_size=21&min_ratings=50${dateParam}${genreParam}${ratingParam}`,
       );
       const data = await res.json();
       setGames(data.results);
     };
     fetchGames();
-  }, [selectedGenre, selectedYear, selectedRating]);
+  }, [selectedGenre, selectedYear, selectedRating, selectedOrdering]);
 
   return (
     <div className="bg-[#000000] min-h-screen px-12 py-10">
@@ -192,18 +199,48 @@ function Explore() {
             )}
           </div>
 
-          {["POPULAR"].map((filter) => (
+          <div className="relative">
             <button
-              key={filter}
+              onClick={() =>
+                setOpenDropdown(openDropdown === "popular" ? null : "popular")
+              }
               style={{
                 background:
                   "linear-gradient(to right, #FFFFFF 0%, #777777 35%, #797979 61%, #FFFFFF 100%)",
               }}
               className="font-['Gugi'] text-xs text-[#ffffff] px-4 py-2 flex items-center gap-2"
             >
-              {filter} ▾
+              {selectedOrdering !== '-added'
+                ? popular.find((y) => y.value === selectedOrdering)?.label
+                : "POPULAR"}{" "}
+              ▾
             </button>
-          ))}
+            {openDropdown === "popular" && (
+              <div className="absolute top-full left-0 mt-1 bg-[#1C1828] border border-[#434243] rounded-md z-50 min-w-[140px]">
+                <button
+                  onClick={() => {
+                    setSelectedOrdering('-added');
+                    setOpenDropdown(null);
+                  }}
+                  className="block w-full text-left px-4 py-2 text-xs font-['Gugi'] text-[#8C8A96] hover:text-[#E8E4D4] hover:bg-[#2A2538]"
+                >
+                  ALL
+                </button>
+                {popular.map((pr) => (
+                  <button
+                    key={pr.value}
+                    onClick={() => {
+                      setSelectedOrdering(pr.value);
+                      setOpenDropdown(null);
+                    }}
+                    className="block w-full text-left px-4 py-2 text-xs font-['Gugi'] text-[#8C8A96] hover:text-[#E8E4D4] hover:bg-[#2A2538]"
+                  >
+                    {pr.label}
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
         </div>
       </div>
 
